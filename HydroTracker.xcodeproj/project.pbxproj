@@ -1,0 +1,794 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		83ADEEEC2EBE73FD00711D34 /* HydroTracker Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 83ADEECC2EBE73FC00711D34 /* HydroTracker Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		837105282EB95A29002F6FC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 837105102EB95A28002F6FC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 837105172EB95A28002F6FC7;
+			remoteInfo = HydroTracker;
+		};
+		837105322EB95A29002F6FC7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 837105102EB95A28002F6FC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 837105172EB95A28002F6FC7;
+			remoteInfo = HydroTracker;
+		};
+		83ADEEEA2EBE73FD00711D34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 837105102EB95A28002F6FC7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83ADEECB2EBE73FC00711D34;
+			remoteInfo = "HydroTracker Watch App Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		83ADEEF02EBE73FD00711D34 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				83ADEEEC2EBE73FD00711D34 /* HydroTracker Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		837105182EB95A28002F6FC7 /* HydroTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HydroTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		837105272EB95A29002F6FC7 /* HydroTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HydroTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		837105312EB95A29002F6FC7 /* HydroTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HydroTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83ADEECC2EBE73FC00711D34 /* HydroTracker Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HydroTracker Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		83ADEEFC2EBE749400711D34 /* Exceptions for "HydroTracker Watch App" folder in "HydroTracker Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				HydroTrackerApp.swift,
+				WatchCustomAmountView.swift,
+				WatchMainView.swift,
+				WatchPresetSelectionView.swift,
+				WatchViewModel.swift,
+			);
+			target = 83ADEECB2EBE73FC00711D34 /* HydroTracker Watch App */;
+		};
+		83ADEEFF2EBE74D900711D34 /* Exceptions for "HydroTracker" folder in "HydroTracker Watch App" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Core/DI/Injected.swift,
+				Core/DI/InjectedValues.swift,
+				"Core/DI/InjectedValues+Repositories.swift",
+				Core/DI/InjectionKey.swift,
+				Core/DI/RepositoryKeys.swift,
+				Core/Models/EntrySource.swift,
+				Core/Models/HydrationEntry.swift,
+				Core/Models/UnitPreference.swift,
+				Core/Models/UserPrefs.swift,
+				Core/Repositories/HydrationEntryRepository.swift,
+				HydroTracker.xcdatamodeld,
+				Utilities/PersistenceController.swift,
+				Utilities/WatchConnectivityManager.swift,
+			);
+			target = 83ADEECB2EBE73FC00711D34 /* HydroTracker Watch App */;
+		};
+		83ADEF122EBEA7D600711D34 /* Exceptions for "HydroTracker" folder in "HydroTracker" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Documentation/Screenshot 2025-11-07 at 2.18.36 PM.png",
+			);
+			target = 837105172EB95A28002F6FC7 /* HydroTracker */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8371051A2EB95A28002F6FC7 /* HydroTracker */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				83ADEF122EBEA7D600711D34 /* Exceptions for "HydroTracker" folder in "HydroTracker" target */,
+				83ADEEFF2EBE74D900711D34 /* Exceptions for "HydroTracker" folder in "HydroTracker Watch App" target */,
+			);
+			path = HydroTracker;
+			sourceTree = "<group>";
+		};
+		8371052A2EB95A29002F6FC7 /* HydroTrackerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HydroTrackerTests;
+			sourceTree = "<group>";
+		};
+		837105342EB95A29002F6FC7 /* HydroTrackerUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HydroTrackerUITests;
+			sourceTree = "<group>";
+		};
+		83ADEE932EBE731D00711D34 /* HydroTracker Watch App */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				83ADEEFC2EBE749400711D34 /* Exceptions for "HydroTracker Watch App" folder in "HydroTracker Watch App" target */,
+			);
+			path = "HydroTracker Watch App";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		837105152EB95A28002F6FC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		837105242EB95A29002F6FC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8371052E2EB95A29002F6FC7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83ADEEC92EBE73FC00711D34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8371050F2EB95A28002F6FC7 = {
+			isa = PBXGroup;
+			children = (
+				8371051A2EB95A28002F6FC7 /* HydroTracker */,
+				8371052A2EB95A29002F6FC7 /* HydroTrackerTests */,
+				837105342EB95A29002F6FC7 /* HydroTrackerUITests */,
+				83ADEE932EBE731D00711D34 /* HydroTracker Watch App */,
+				837105192EB95A28002F6FC7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		837105192EB95A28002F6FC7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				837105182EB95A28002F6FC7 /* HydroTracker.app */,
+				837105272EB95A29002F6FC7 /* HydroTrackerTests.xctest */,
+				837105312EB95A29002F6FC7 /* HydroTrackerUITests.xctest */,
+				83ADEECC2EBE73FC00711D34 /* HydroTracker Watch App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		837105172EB95A28002F6FC7 /* HydroTracker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8371053B2EB95A29002F6FC7 /* Build configuration list for PBXNativeTarget "HydroTracker" */;
+			buildPhases = (
+				837105142EB95A28002F6FC7 /* Sources */,
+				837105152EB95A28002F6FC7 /* Frameworks */,
+				837105162EB95A28002F6FC7 /* Resources */,
+				83ADEEF02EBE73FD00711D34 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83ADEEEB2EBE73FD00711D34 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8371051A2EB95A28002F6FC7 /* HydroTracker */,
+			);
+			name = HydroTracker;
+			packageProductDependencies = (
+			);
+			productName = HydroTracker;
+			productReference = 837105182EB95A28002F6FC7 /* HydroTracker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		837105262EB95A29002F6FC7 /* HydroTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8371053E2EB95A29002F6FC7 /* Build configuration list for PBXNativeTarget "HydroTrackerTests" */;
+			buildPhases = (
+				837105232EB95A29002F6FC7 /* Sources */,
+				837105242EB95A29002F6FC7 /* Frameworks */,
+				837105252EB95A29002F6FC7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				837105292EB95A29002F6FC7 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8371052A2EB95A29002F6FC7 /* HydroTrackerTests */,
+			);
+			name = HydroTrackerTests;
+			packageProductDependencies = (
+			);
+			productName = HydroTrackerTests;
+			productReference = 837105272EB95A29002F6FC7 /* HydroTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		837105302EB95A29002F6FC7 /* HydroTrackerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 837105412EB95A29002F6FC7 /* Build configuration list for PBXNativeTarget "HydroTrackerUITests" */;
+			buildPhases = (
+				8371052D2EB95A29002F6FC7 /* Sources */,
+				8371052E2EB95A29002F6FC7 /* Frameworks */,
+				8371052F2EB95A29002F6FC7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				837105332EB95A29002F6FC7 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				837105342EB95A29002F6FC7 /* HydroTrackerUITests */,
+			);
+			name = HydroTrackerUITests;
+			packageProductDependencies = (
+			);
+			productName = HydroTrackerUITests;
+			productReference = 837105312EB95A29002F6FC7 /* HydroTrackerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		83ADEECB2EBE73FC00711D34 /* HydroTracker Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83ADEEED2EBE73FD00711D34 /* Build configuration list for PBXNativeTarget "HydroTracker Watch App" */;
+			buildPhases = (
+				83ADEEC82EBE73FC00711D34 /* Sources */,
+				83ADEEC92EBE73FC00711D34 /* Frameworks */,
+				83ADEECA2EBE73FC00711D34 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "HydroTracker Watch App";
+			packageProductDependencies = (
+			);
+			productName = "HydroTracker Watch App Watch App";
+			productReference = 83ADEECC2EBE73FC00711D34 /* HydroTracker Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		837105102EB95A28002F6FC7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					837105172EB95A28002F6FC7 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					837105262EB95A29002F6FC7 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = 837105172EB95A28002F6FC7;
+					};
+					837105302EB95A29002F6FC7 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = 837105172EB95A28002F6FC7;
+					};
+					83ADEECB2EBE73FC00711D34 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+				};
+			};
+			buildConfigurationList = 837105132EB95A28002F6FC7 /* Build configuration list for PBXProject "HydroTracker" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8371050F2EB95A28002F6FC7;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 837105192EB95A28002F6FC7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				837105172EB95A28002F6FC7 /* HydroTracker */,
+				837105262EB95A29002F6FC7 /* HydroTrackerTests */,
+				837105302EB95A29002F6FC7 /* HydroTrackerUITests */,
+				83ADEECB2EBE73FC00711D34 /* HydroTracker Watch App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		837105162EB95A28002F6FC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		837105252EB95A29002F6FC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8371052F2EB95A29002F6FC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83ADEECA2EBE73FC00711D34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		837105142EB95A28002F6FC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		837105232EB95A29002F6FC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8371052D2EB95A29002F6FC7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83ADEEC82EBE73FC00711D34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		837105292EB95A29002F6FC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 837105172EB95A28002F6FC7 /* HydroTracker */;
+			targetProxy = 837105282EB95A29002F6FC7 /* PBXContainerItemProxy */;
+		};
+		837105332EB95A29002F6FC7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 837105172EB95A28002F6FC7 /* HydroTracker */;
+			targetProxy = 837105322EB95A29002F6FC7 /* PBXContainerItemProxy */;
+		};
+		83ADEEEB2EBE73FD00711D34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83ADEECB2EBE73FC00711D34 /* HydroTracker Watch App */;
+			targetProxy = 83ADEEEA2EBE73FD00711D34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		837105392EB95A29002F6FC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = S6GR66BQ4K;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8371053A2EB95A29002F6FC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = S6GR66BQ4K;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8371053C2EB95A29002F6FC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HydroTracker/HydroTracker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S6GR66BQ4K;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christophershireman.HydroTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8371053D2EB95A29002F6FC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = HydroTracker/HydroTracker.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S6GR66BQ4K;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christophershireman.HydroTracker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8371053F2EB95A29002F6FC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S6GR66BQ4K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christophershireman.HydroTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HydroTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HydroTracker";
+			};
+			name = Debug;
+		};
+		837105402EB95A29002F6FC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S6GR66BQ4K;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christophershireman.HydroTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HydroTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HydroTracker";
+			};
+			name = Release;
+		};
+		837105422EB95A29002F6FC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S6GR66BQ4K;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christophershireman.HydroTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HydroTracker;
+			};
+			name = Debug;
+		};
+		837105432EB95A29002F6FC7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S6GR66BQ4K;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christophershireman.HydroTrackerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HydroTracker;
+			};
+			name = Release;
+		};
+		83ADEEEE2EBE73FD00711D34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HydroTracker Watch App/HydroTracker Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S6GR66BQ4K;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "HydroTracker Watch App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.christophershireman.HydroTracker;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christophershireman.HydroTracker.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Debug;
+		};
+		83ADEEEF2EBE73FD00711D34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "HydroTracker Watch App/HydroTracker Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S6GR66BQ4K;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "HydroTracker Watch App";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.christophershireman.HydroTracker;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.christophershireman.HydroTracker.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		837105132EB95A28002F6FC7 /* Build configuration list for PBXProject "HydroTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				837105392EB95A29002F6FC7 /* Debug */,
+				8371053A2EB95A29002F6FC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8371053B2EB95A29002F6FC7 /* Build configuration list for PBXNativeTarget "HydroTracker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8371053C2EB95A29002F6FC7 /* Debug */,
+				8371053D2EB95A29002F6FC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8371053E2EB95A29002F6FC7 /* Build configuration list for PBXNativeTarget "HydroTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8371053F2EB95A29002F6FC7 /* Debug */,
+				837105402EB95A29002F6FC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		837105412EB95A29002F6FC7 /* Build configuration list for PBXNativeTarget "HydroTrackerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				837105422EB95A29002F6FC7 /* Debug */,
+				837105432EB95A29002F6FC7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83ADEEED2EBE73FD00711D34 /* Build configuration list for PBXNativeTarget "HydroTracker Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83ADEEEE2EBE73FD00711D34 /* Debug */,
+				83ADEEEF2EBE73FD00711D34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 837105102EB95A28002F6FC7 /* Project object */;
+}
