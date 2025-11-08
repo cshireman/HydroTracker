@@ -29,7 +29,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "83ADEE892EBE731D00711D34"
+               BlueprintIdentifier = "83ADEECB2EBE73FC00711D34"
                BuildableName = "HydroTracker Watch App.app"
                BlueprintName = "HydroTracker Watch App"
                ReferencedContainer = "container:HydroTracker.xcodeproj">

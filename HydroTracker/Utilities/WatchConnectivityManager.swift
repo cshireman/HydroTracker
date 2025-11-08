@@ -33,13 +33,13 @@ class WatchConnectivityManager: NSObject, ObservableObject {
     // MARK: - Send Data
 
     func syncAllData() {
-        // Fetch all today's entries
+        // Fetch all today's entries (including deleted ones for sync)
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: Date())
         guard let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) else { return }
 
         let predicate = NSPredicate(
-            format: "createdAt >= %@ AND createdAt < %@ AND isDeletedFlag == NO",
+            format: "createdAt >= %@ AND createdAt < %@",
             startOfDay as NSDate,
             endOfDay as NSDate
         )
@@ -53,7 +53,8 @@ class WatchConnectivityManager: NSObject, ObservableObject {
                     "id": entry.id.uuidString,
                     "amountMl": entry.amountMl,
                     "createdAt": entry.createdAt.timeIntervalSince1970,
-                    "source": entry.source.rawValue
+                    "source": entry.source.rawValue,
+                    "isDeleted": entry.isDeletedFlag
                 ]
             }
 
@@ -174,6 +175,7 @@ extension WatchConnectivityManager: WCSessionDelegate {
                     }
 
                     let createdAt = Date(timeIntervalSince1970: createdAtTimestamp)
+                    let isDeleted = entryData["isDeleted"] as? Bool ?? false
 
                     // Check if entry already exists
                     let fetchRequest: NSFetchRequest<HydrationEntry> = HydrationEntry.fetchRequest()
@@ -181,16 +183,24 @@ extension WatchConnectivityManager: WCSessionDelegate {
 
                     do {
                         let existing = try self.viewContext.fetch(fetchRequest)
-                        if existing.isEmpty {
+                        if let existingEntry = existing.first {
+                            // Update existing entry's deletion status if it changed
+                            if existingEntry.isDeletedFlag != isDeleted {
+                                existingEntry.isDeletedFlag = isDeleted
+                                existingEntry.lastModifiedAt = Date()
+                                print("✅ Updated entry deletion status: \(amountMl)ml, deleted=\(isDeleted)")
+                            }
+                        } else {
                             // Create new entry
-                            _ = HydrationEntry(
+                            let newEntry = HydrationEntry(
                                 context: self.viewContext,
                                 id: id,
                                 amountMl: amountMl,
                                 createdAt: createdAt,
-                                source: source
+                                source: source,
+                                isDeleted: isDeleted
                             )
-                            print("✅ Imported entry: \(amountMl)ml at \(createdAt)")
+                            print("✅ Imported entry: \(amountMl)ml at \(createdAt), deleted=\(isDeleted)")
                         }
                     } catch {
                         print("❌ Failed to check for existing entry: \(error.localizedDescription)")

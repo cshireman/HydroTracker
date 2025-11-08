@@ -11,6 +11,7 @@ import CoreData
 
 struct WatchMainView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject private var connectivityManager: WatchConnectivityManager
     @State private var viewModel: WatchViewModel?
     @State private var showingAddWater = false
 
@@ -71,7 +72,7 @@ struct WatchMainView: View {
                     .trim(from: 0, to: CGFloat(min(progress, 1.0)))
                     .stroke(
                         Color.blue,
-                        style: StrokeStyle(lineWidth: 12, lineCap: .butt)
+                        style: StrokeStyle(lineWidth: 12, lineCap: .round)
                     )
                     .rotationEffect(.degrees(-90))
                     .animation(.easeInOut(duration: 0.3), value: progress)
@@ -115,6 +116,8 @@ struct WatchMainView: View {
             if viewModel == nil {
                 viewModel = WatchViewModel(context: viewContext)
             }
+            // Sync data on app startup to get latest from iPhone
+            connectivityManager.syncData()
         }
         .onChange(of: userPrefs.first?.dailyGoalMl) { _, _ in
             viewModel?.loadPreferences()

@@ -127,6 +127,8 @@ struct HomeView: View {
             if viewModel == nil {
                 viewModel = HomeViewModel(context: viewContext)
             }
+            // Sync data on app startup to get latest from Watch
+            connectivityManager.syncData()
         }
         .onChange(of: userPrefs.first?.dailyGoalMl) { _, _ in
             viewModel?.loadPreferences()
@@ -262,7 +264,7 @@ private struct ProgressRing: View {
                 .trim(from: 0, to: CGFloat(min(progress, 1.0)))
                 .stroke(
                     Color.blue,
-                    style: StrokeStyle(lineWidth: thickness, lineCap: .butt)
+                    style: StrokeStyle(lineWidth: thickness, lineCap: .round)
                 )
                 .rotationEffect(.degrees(-90))
                 .animation(.easeInOut(duration: 0.3), value: progress)
