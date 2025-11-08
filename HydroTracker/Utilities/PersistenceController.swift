@@ -59,15 +59,3 @@ struct PersistenceController {
         // and automatically refreshes the context when data changes from another process
     }
 }
-
-extension InjectedValues {
-    var persistenceController: PersistenceController {
-        get { Self[PersistenceControllerKey.self] }
-        set { Self[PersistenceControllerKey.self] = newValue }
-    }
-}
-
-@MainActor
-struct PersistenceControllerKey: InjectionKey {
-    static var currentValue: PersistenceController = PersistenceController.shared
-}

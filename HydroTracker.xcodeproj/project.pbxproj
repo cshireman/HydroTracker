@@ -71,16 +71,10 @@
 		83ADEEFF2EBE74D900711D34 /* Exceptions for "HydroTracker" folder in "HydroTracker Watch App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Core/DI/Injected.swift,
-				Core/DI/InjectedValues.swift,
-				"Core/DI/InjectedValues+Repositories.swift",
-				Core/DI/InjectionKey.swift,
-				Core/DI/RepositoryKeys.swift,
 				Core/Models/EntrySource.swift,
 				Core/Models/HydrationEntry.swift,
 				Core/Models/UnitPreference.swift,
 				Core/Models/UserPrefs.swift,
-				Core/Repositories/HydrationEntryRepository.swift,
 				HydroTracker.xcdatamodeld,
 				Utilities/PersistenceController.swift,
 				Utilities/WatchConnectivityManager.swift,
