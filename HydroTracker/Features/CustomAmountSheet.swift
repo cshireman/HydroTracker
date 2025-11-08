@@ -10,12 +10,14 @@ import CoreData
 
 struct CustomAmountSheet: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var connectivityManager: WatchConnectivityManager
-    let viewModel: HomeViewModel
-    let viewContext: NSManagedObjectContext
 
-    @State private var amount: Double = 8.0
-    @State private var selectedUnit: UnitPreference = .oz
+    @State private var viewModel: CustomAmountViewModel
+
+    init(baseViewModel: HomeViewModel, viewContext: NSManagedObjectContext) {
+        _viewModel = State(initialValue: CustomAmountViewModel(context: viewContext, baseViewModel: baseViewModel))
+    }
 
     var body: some View {
         NavigationStack {
@@ -29,18 +31,18 @@ struct CustomAmountSheet: View {
                         .foregroundStyle(.secondary)
 
                     HStack(spacing: 12) {
-                        Text(String(format: "%.1f", amount))
+                        Text(String(format: "%.1f", viewModel.amount))
                             .font(.system(size: 64, weight: .bold, design: .rounded))
                             .monospacedDigit()
 
-                        Text(selectedUnit == .oz ? "oz" : "ml")
+                        Text(viewModel.selectedUnit == .oz ? "oz" : "ml")
                             .font(.title)
                             .foregroundStyle(.secondary)
                     }
                 }
 
                 // Unit Picker
-                Picker("Unit", selection: $selectedUnit) {
+                Picker("Unit", selection: $viewModel.selectedUnit) {
                     Text("oz").tag(UnitPreference.oz)
                     Text("ml").tag(UnitPreference.ml)
                 }
@@ -50,18 +52,18 @@ struct CustomAmountSheet: View {
                 // Increment/Decrement Buttons
                 HStack(spacing: 20) {
                     Button {
-                        decreaseAmount()
+                        viewModel.decreaseAmount()
                     } label: {
                         Image(systemName: "minus.circle.fill")
                             .font(.system(size: 44))
                             .foregroundStyle(.blue)
                     }
-                    .disabled(amount <= 0.5)
+                    .disabled(viewModel.amount <= 0.5)
 
                     Spacer()
 
                     Button {
-                        increaseAmount()
+                        viewModel.increaseAmount()
                     } label: {
                         Image(systemName: "plus.circle.fill")
                             .font(.system(size: 44))
@@ -97,45 +99,11 @@ struct CustomAmountSheet: View {
                 }
             }
         }
-        .onAppear {
-            selectedUnit = viewModel.units
-        }
-    }
-
-    private func increaseAmount() {
-        if selectedUnit == .oz {
-            amount += 0.5
-        } else {
-            amount += 50
-        }
-    }
-
-    private func decreaseAmount() {
-        if selectedUnit == .oz {
-            amount = max(0.5, amount - 0.5)
-        } else {
-            amount = max(50, amount - 50)
-        }
     }
 
     private func addWater() {
-        let amountInMl: Double
-        if selectedUnit == .oz {
-            amountInMl = viewModel.ozToMl(amount)
-        } else {
-            amountInMl = amount
-        }
-
-        _ = HydrationEntry(
-            context: viewContext,
-            amountMl: amountInMl,
-            createdAt: Date(),
-            source: .iphone
-        )
-
         do {
-            try viewContext.save()
-            connectivityManager.syncData() // Notify Watch of change
+            try viewModel.addWater(syncManager: connectivityManager)
             dismiss()
         } catch {
             print("Failed to save custom amount: \(error.localizedDescription)")
@@ -145,7 +113,8 @@ struct CustomAmountSheet: View {
 
 #Preview {
     CustomAmountSheet(
-        viewModel: HomeViewModel(context: PersistenceController.shared.container.viewContext),
+        baseViewModel: HomeViewModel(context: PersistenceController.shared.container.viewContext),
         viewContext: PersistenceController.shared.container.viewContext
     )
+    .environmentObject(WatchConnectivityManager.shared)
 }

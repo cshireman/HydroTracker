@@ -10,24 +10,12 @@ import CoreData
 
 struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject private var connectivityManager: WatchConnectivityManager
 
-    @State private var userPrefs: UserPrefs?
-    @State private var dailyGoalOz: Double = 98.0
-    @State private var selectedUnit: UnitPreference = .oz
-    @State private var preset1: Double = 2.0
-    @State private var preset2: Double = 16.0
-    @State private var preset3: Double = 20.0
-    @State private var healthWriteEnabled: Bool = false
+    @State private var viewModel: SettingsViewModel
 
-    // Number formatter for one decimal place
-    private var oneDecimalFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 1
-        return formatter
+    init(viewContext: NSManagedObjectContext) {
+        _viewModel = State(initialValue: SettingsViewModel(context: viewContext))
     }
 
     var body: some View {
@@ -35,7 +23,7 @@ struct SettingsView: View {
             Form {
                 // Units Section
                 Section("Units") {
-                    Picker("Preferred Unit", selection: $selectedUnit) {
+                    Picker("Preferred Unit", selection: $viewModel.selectedUnit) {
                         Text("Ounces (oz)").tag(UnitPreference.oz)
                         Text("Milliliters (ml)").tag(UnitPreference.ml)
                     }
@@ -46,7 +34,7 @@ struct SettingsView: View {
                     HStack {
                         Text("Daily Goal")
                         Spacer()
-                        TextField("Goal", value: $dailyGoalOz, formatter: oneDecimalFormatter)
+                        TextField("Goal", value: $viewModel.dailyGoalOz, formatter: viewModel.oneDecimalFormatter)
                             .keyboardType(.decimalPad)
                             .multilineTextAlignment(.trailing)
                             .frame(width: 80)
@@ -61,9 +49,9 @@ struct SettingsView: View {
 
                 // Presets Section
                 Section {
-                    PresetRow(title: "Preset 1", value: $preset1, unit: selectedUnit)
-                    PresetRow(title: "Preset 2", value: $preset2, unit: selectedUnit)
-                    PresetRow(title: "Preset 3", value: $preset3, unit: selectedUnit)
+                    PresetRow(title: "Preset 1", value: $viewModel.preset1, unit: viewModel.selectedUnit)
+                    PresetRow(title: "Preset 2", value: $viewModel.preset2, unit: viewModel.selectedUnit)
+                    PresetRow(title: "Preset 3", value: $viewModel.preset3, unit: viewModel.selectedUnit)
                 } header: {
                     Text("Quick Add Presets")
                 } footer: {
@@ -72,7 +60,7 @@ struct SettingsView: View {
 
                 // Health Integration Section
                 Section {
-                    Toggle("Write to Health App", isOn: $healthWriteEnabled)
+                    Toggle("Write to Health App", isOn: $viewModel.healthWriteEnabled)
                 } header: {
                     Text("Health Integration")
                 } footer: {
@@ -89,66 +77,16 @@ struct SettingsView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        saveSettings()
+                        viewModel.saveSettings(syncManager: connectivityManager) {
+                            dismiss()
+                        }
                     }
                 }
             }
             .onAppear {
-                loadSettings()
+                viewModel.loadSettings()
             }
         }
-    }
-
-    private func loadSettings() {
-        let fetchRequest: NSFetchRequest<UserPrefs> = UserPrefs.fetchRequest()
-
-        do {
-            let prefs = try viewContext.fetch(fetchRequest).first
-            if let prefs = prefs {
-                self.userPrefs = prefs
-                self.selectedUnit = prefs.unit
-                self.dailyGoalOz = mlToOz(prefs.dailyGoalMl)
-                self.healthWriteEnabled = prefs.healthWriteEnabled
-
-                let presetsOz = prefs.presetsMl.map { mlToOz($0) }
-                if presetsOz.count >= 1 { preset1 = presetsOz[0] }
-                if presetsOz.count >= 2 { preset2 = presetsOz[1] }
-                if presetsOz.count >= 3 { preset3 = presetsOz[2] }
-            }
-        } catch {
-            print("Failed to load settings: \(error.localizedDescription)")
-        }
-    }
-
-    private func saveSettings() {
-        let fetchRequest: NSFetchRequest<UserPrefs> = UserPrefs.fetchRequest()
-
-        do {
-            let prefs = try viewContext.fetch(fetchRequest).first ?? UserPrefs(context: viewContext)
-
-            prefs.unit = selectedUnit
-            prefs.dailyGoalMl = ozToMl(dailyGoalOz)
-            prefs.presetsMl = [
-                ozToMl(preset1),
-                ozToMl(preset2),
-                ozToMl(preset3)
-            ]
-            prefs.healthWriteEnabled = healthWriteEnabled
-
-            try viewContext.save()
-            connectivityManager.syncData() // Notify Watch of change
-            dismiss()
-        } catch {
-            print("Failed to save settings: \(error.localizedDescription)")
-        }
-    }
-
-    private func ozToMl(_ oz: Double) -> Double {
-        return oz * 29.5735
-    }
-
-    private func mlToOz(_ ml: Double) -> Double {
-        return ml / 29.5735
     }
 }
 
@@ -182,6 +120,6 @@ private struct PresetRow: View {
 }
 
 #Preview {
-    SettingsView()
-        .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+    SettingsView(viewContext: PersistenceController.shared.container.viewContext)
+        .environmentObject(WatchConnectivityManager.shared)
 }

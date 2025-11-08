@@ -10,19 +10,22 @@ import SwiftUI
 import CoreData
 
 struct WatchCustomAmountView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var connectivityManager: WatchConnectivityManager
-    let viewModel: WatchViewModel
     let onAdd: () -> Void
 
-    @State private var amount: Double = 8.0
+    @State private var viewModel: WatchCustomAmountViewModel
+
+    init(baseViewModel: WatchViewModel, onAdd: @escaping () -> Void) {
+        self.onAdd = onAdd
+        _viewModel = State(initialValue: WatchCustomAmountViewModel(baseViewModel: baseViewModel))
+    }
 
     var body: some View {
         VStack(spacing: 16) {
             // Amount Display
             VStack(spacing: 4) {
-                Text(String(format: "%.1f", amount))
+                Text(String(format: "%.1f", viewModel.amount))
                     .font(.system(size: 48, weight: .bold, design: .rounded))
                     .monospacedDigit()
                 Text("oz")
@@ -31,7 +34,7 @@ struct WatchCustomAmountView: View {
             }
             .focusable()
             .digitalCrownRotation(
-                $amount,
+                $viewModel.amount,
                 from: 1.0,
                 through: 64.0,
                 by: 0.5,
@@ -64,16 +67,17 @@ struct WatchCustomAmountView: View {
     }
 
     private func addWater() {
-        viewModel.addWater(ounces: amount, context: viewContext, syncManager: connectivityManager)
-        onAdd()
+        viewModel.addWater(syncManager: connectivityManager) {
+            onAdd()
+        }
     }
 }
 
 #Preview {
     WatchCustomAmountView(
-        viewModel: WatchViewModel(context: PersistenceController.shared.container.viewContext),
+        baseViewModel: WatchViewModel(context: PersistenceController.shared.container.viewContext),
         onAdd: {}
     )
-    .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+    .environmentObject(WatchConnectivityManager.shared)
 }
 #endif

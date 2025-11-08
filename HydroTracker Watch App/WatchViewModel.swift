@@ -74,20 +74,15 @@ class WatchViewModel {
     }
 
     // MARK: - Actions
-    func addWater(ounces: Double, context: NSManagedObjectContext, syncManager: WatchConnectivityManager) {
+    func addWater(ounces: Double, syncManager: WatchConnectivityManager) throws {
         _ = HydrationEntry(
-            context: context,
+            context: viewContext,
             amountMl: ozToMl(ounces),
             createdAt: Date(),
             source: .watch
         )
-
-        do {
-            try context.save()
-            syncManager.syncData() // Notify iPhone of change
-        } catch {
-            print("Failed to save entry: \(error.localizedDescription)")
-        }
+        try viewContext.save()
+        syncManager.syncData()
     }
 }
 #endif

@@ -10,7 +10,6 @@ import SwiftUI
 import CoreData
 
 struct WatchPresetSelectionView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var connectivityManager: WatchConnectivityManager
     let viewModel: WatchViewModel
@@ -60,15 +59,19 @@ struct WatchPresetSelectionView: View {
             }
         }
         .sheet(isPresented: $showingCustomAmount) {
-            WatchCustomAmountView(viewModel: viewModel, onAdd: {
+            WatchCustomAmountView(baseViewModel: viewModel, onAdd: {
                 dismiss()
             })
         }
     }
 
     private func addWater(ounces: Double) {
-        viewModel.addWater(ounces: ounces, context: viewContext, syncManager: connectivityManager)
-        dismiss()
+        do {
+            try viewModel.addWater(ounces: ounces, syncManager: connectivityManager)
+            dismiss()
+        } catch {
+            print("Failed to add water: \(error.localizedDescription)")
+        }
     }
 }
 

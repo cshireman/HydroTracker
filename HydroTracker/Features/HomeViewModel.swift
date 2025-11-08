@@ -73,4 +73,23 @@ class HomeViewModel {
     func mlToOz(_ ml: Double) -> Double {
         return ml / 29.5735
     }
+
+    // MARK: - Actions
+    func addAmount(ounces: Double, syncManager: WatchConnectivityManager) throws {
+        _ = HydrationEntry(
+            context: viewContext,
+            amountMl: ozToMl(ounces),
+            createdAt: Date(),
+            source: .iphone
+        )
+        try viewContext.save()
+        syncManager.syncData()
+    }
+
+    func deleteEntry(_ entry: HydrationEntry, syncManager: WatchConnectivityManager) throws {
+        entry.isDeletedFlag = true
+        entry.lastModifiedAt = Date()
+        try viewContext.save()
+        syncManager.syncData()
+    }
 }

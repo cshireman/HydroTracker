@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @State private var showingSettings = false
     @State private var showingCustomAmount = false
 
@@ -29,7 +30,7 @@ struct ContentView: View {
                     }
                 }
                 .sheet(isPresented: $showingSettings) {
-                    SettingsView()
+                    SettingsView(viewContext: viewContext)
                 }
         }
     }

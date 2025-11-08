@@ -11,9 +11,11 @@ import CoreData
 
 struct WatchMainView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.scenePhase) private var scenePhase
     @EnvironmentObject private var connectivityManager: WatchConnectivityManager
     @State private var viewModel: WatchViewModel?
     @State private var showingAddWater = false
+    @State private var currentDay: Date = Calendar.current.startOfDay(for: Date())
 
     // MARK: - Fetch Request: Today's Entries
     @FetchRequest var todayEntries: FetchedResults<HydrationEntry>
@@ -25,21 +27,21 @@ struct WatchMainView: View {
     ) private var userPrefs: FetchedResults<UserPrefs>
 
     init() {
-        // Calculate start and end of today for predicate
+        // Initialize with today's date
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: Date())
-        guard let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) else {
-            _todayEntries = FetchRequest<HydrationEntry>(
-                sortDescriptors: [NSSortDescriptor(keyPath: \HydrationEntry.createdAt, ascending: false)],
-                predicate: NSPredicate(format: "isDeletedFlag == NO")
+
+        let predicate: NSPredicate
+        if let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) {
+            predicate = NSPredicate(
+                format: "createdAt >= %@ AND createdAt < %@ AND isDeletedFlag == NO",
+                startOfDay as NSDate,
+                endOfDay as NSDate
             )
-            return
+        } else {
+            predicate = NSPredicate(format: "isDeletedFlag == NO")
         }
-        let predicate = NSPredicate(
-            format: "createdAt >= %@ AND createdAt < %@ AND isDeletedFlag == NO",
-            startOfDay as NSDate,
-            endOfDay as NSDate
-        )
+
         _todayEntries = FetchRequest<HydrationEntry>(
             sortDescriptors: [NSSortDescriptor(keyPath: \HydrationEntry.createdAt, ascending: false)],
             predicate: predicate
@@ -116,8 +118,14 @@ struct WatchMainView: View {
             if viewModel == nil {
                 viewModel = WatchViewModel(context: viewContext)
             }
+            checkForDayChange()
             // Sync data on app startup to get latest from iPhone
             connectivityManager.syncData()
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                checkForDayChange()
+            }
         }
         .onChange(of: userPrefs.first?.dailyGoalMl) { _, _ in
             viewModel?.loadPreferences()
@@ -133,6 +141,35 @@ struct WatchMainView: View {
                 WatchPresetSelectionView(viewModel: vm)
             }
         }
+    }
+
+    private func checkForDayChange() {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+
+        if today != currentDay {
+            print("🗓️ Day changed! Updating fetch request...")
+            currentDay = today
+            updateFetchRequest()
+        }
+    }
+
+    private func updateFetchRequest() {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: Date())
+
+        let predicate: NSPredicate
+        if let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) {
+            predicate = NSPredicate(
+                format: "createdAt >= %@ AND createdAt < %@ AND isDeletedFlag == NO",
+                startOfDay as NSDate,
+                endOfDay as NSDate
+            )
+        } else {
+            predicate = NSPredicate(format: "isDeletedFlag == NO")
+        }
+
+        todayEntries.nsPredicate = predicate
     }
 }
 

@@ -62,6 +62,7 @@
 				Assets.xcassets,
 				HydroTrackerApp.swift,
 				WatchCustomAmountView.swift,
+				WatchCustomAmountViewModel.swift,
 				WatchMainView.swift,
 				WatchPresetSelectionView.swift,
 				WatchViewModel.swift,
