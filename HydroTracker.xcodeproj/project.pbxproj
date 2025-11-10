@@ -56,6 +56,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		83AC497A2EC2AD3F00936FD0 /* Exceptions for "HydroTracker" folder in "HydroTrackerTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				HydroTracker.xcdatamodeld,
+			);
+			target = 837105262EB95A29002F6FC7 /* HydroTrackerTests */;
+		};
 		83ADEEFC2EBE749400711D34 /* Exceptions for "HydroTracker Watch App" folder in "HydroTracker Watch App" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -96,6 +103,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				83ADEF122EBEA7D600711D34 /* Exceptions for "HydroTracker" folder in "HydroTracker" target */,
+				83AC497A2EC2AD3F00936FD0 /* Exceptions for "HydroTracker" folder in "HydroTrackerTests" target */,
 				83ADEEFF2EBE74D900711D34 /* Exceptions for "HydroTracker" folder in "HydroTracker Watch App" target */,
 			);
 			path = HydroTracker;

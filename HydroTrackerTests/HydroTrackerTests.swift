@@ -8,10 +8,10 @@
 import Testing
 @testable import HydroTracker
 
-struct HydroTrackerTests {
-
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-    }
-
-}
+// This file serves as the main test suite entry point.
+// Individual test files are organized by component:
+// - PersistenceControllerTests.swift
+// - HomeViewModelTests.swift
+// - CustomAmountViewModelTests.swift
+// - SettingsViewModelTests.swift
+// - WatchConnectivityManagerTests.swift
