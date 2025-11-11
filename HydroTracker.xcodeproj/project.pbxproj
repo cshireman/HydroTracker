@@ -52,6 +52,7 @@
 		837105182EB95A28002F6FC7 /* HydroTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HydroTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837105272EB95A29002F6FC7 /* HydroTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HydroTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		837105312EB95A29002F6FC7 /* HydroTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HydroTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83AC497B2EC2B30400936FD0 /* README 2.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "README 2.md"; sourceTree = "<group>"; };
 		83ADEECC2EBE73FC00711D34 /* HydroTracker Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HydroTracker Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -89,20 +90,12 @@
 			);
 			target = 83ADEECB2EBE73FC00711D34 /* HydroTracker Watch App */;
 		};
-		83ADEF122EBEA7D600711D34 /* Exceptions for "HydroTracker" folder in "HydroTracker" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Documentation/Screenshot 2025-11-07 at 2.18.36 PM.png",
-			);
-			target = 837105172EB95A28002F6FC7 /* HydroTracker */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8371051A2EB95A28002F6FC7 /* HydroTracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				83ADEF122EBEA7D600711D34 /* Exceptions for "HydroTracker" folder in "HydroTracker" target */,
 				83AC497A2EC2AD3F00936FD0 /* Exceptions for "HydroTracker" folder in "HydroTrackerTests" target */,
 				83ADEEFF2EBE74D900711D34 /* Exceptions for "HydroTracker" folder in "HydroTracker Watch App" target */,
 			);
@@ -164,6 +157,7 @@
 		8371050F2EB95A28002F6FC7 = {
 			isa = PBXGroup;
 			children = (
+				83AC497B2EC2B30400936FD0 /* README 2.md */,
 				8371051A2EB95A28002F6FC7 /* HydroTracker */,
 				8371052A2EB95A29002F6FC7 /* HydroTrackerTests */,
 				837105342EB95A29002F6FC7 /* HydroTrackerUITests */,

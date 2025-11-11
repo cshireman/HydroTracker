@@ -57,15 +57,6 @@ struct SettingsView: View {
                 } footer: {
                     Text("Configure your quick-add buttons")
                 }
-
-                // Health Integration Section
-                Section {
-                    Toggle("Write to Health App", isOn: $viewModel.healthWriteEnabled)
-                } header: {
-                    Text("Health Integration")
-                } footer: {
-                    Text("Sync water intake to Apple Health")
-                }
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
