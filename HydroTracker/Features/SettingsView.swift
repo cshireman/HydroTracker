@@ -9,10 +9,10 @@ import SwiftUI
 import CoreData
 
 struct SettingsView: View {
-    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject private var connectivityManager: WatchConnectivityManager
 
     @State private var viewModel: SettingsViewModel
+    @State private var hasUnsavedChanges = false
 
     init(viewContext: NSManagedObjectContext) {
         _viewModel = State(initialValue: SettingsViewModel(context: viewContext))
@@ -57,26 +57,27 @@ struct SettingsView: View {
                 } footer: {
                     Text("Configure your quick-add buttons")
                 }
-            }
-            .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
+
+                // Save Section
+                Section {
+                    Button("Save Changes") {
                         viewModel.saveSettings(syncManager: connectivityManager) {
-                            dismiss()
+                            hasUnsavedChanges = false
                         }
                     }
+                    .frame(maxWidth: .infinity)
+                    .disabled(!hasUnsavedChanges)
                 }
             }
+            .navigationTitle("Settings")
             .onAppear {
                 viewModel.loadSettings()
             }
+            .onChange(of: viewModel.selectedUnit) { _, _ in hasUnsavedChanges = true }
+            .onChange(of: viewModel.dailyGoalOz) { _, _ in hasUnsavedChanges = true }
+            .onChange(of: viewModel.preset1) { _, _ in hasUnsavedChanges = true }
+            .onChange(of: viewModel.preset2) { _, _ in hasUnsavedChanges = true }
+            .onChange(of: viewModel.preset3) { _, _ in hasUnsavedChanges = true }
         }
     }
 }

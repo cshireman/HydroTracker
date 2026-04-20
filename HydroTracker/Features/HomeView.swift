@@ -8,6 +8,7 @@ struct HomeView: View {
     @State private var viewModel: HomeViewModel?
     @State private var showingCustomAmountSheet = false
     @State private var currentDay: Date = Calendar.current.startOfDay(for: Date())
+    @State private var showConfetti = false
 
     // MARK: - Fetch Request: Today's Entries
     @FetchRequest var todayEntries: FetchedResults<HydrationEntry>
@@ -57,6 +58,7 @@ struct HomeView: View {
 
     // MARK: - Body
     var body: some View {
+        ZStack {
         ScrollView {
             VStack(spacing: 24) {
                 // Progress Ring with percentage text
@@ -151,6 +153,12 @@ struct HomeView: View {
                 CustomAmountSheet(baseViewModel: vm, viewContext: viewContext)
             }
         }
+        .onChange(of: todayEntries.count) { _, _ in
+            checkGoalCelebration()
+        }
+
+            ConfettiView(trigger: $showConfetti)
+        } // ZStack
     }
 
     // MARK: - Actions
@@ -172,6 +180,16 @@ struct HomeView: View {
                 try vm.deleteEntry(entry, syncManager: connectivityManager)
             } catch {
                 print("Failed to delete entry: \(error.localizedDescription)")
+            }
+        }
+    }
+
+    private func checkGoalCelebration() {
+        guard let vm = viewModel else { return }
+        if vm.shouldCelebrate(for: Array(todayEntries)) {
+            vm.markCelebrated()
+            withAnimation {
+                showConfetti = true
             }
         }
     }
@@ -304,5 +322,6 @@ struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
             .environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+            .environmentObject(WatchConnectivityManager.shared)
     }
 }

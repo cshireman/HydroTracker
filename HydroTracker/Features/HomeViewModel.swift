@@ -18,6 +18,24 @@ class HomeViewModel {
 
     private let viewContext: NSManagedObjectContext
 
+    // MARK: - Goal Celebration
+    private static let lastCelebratedDateKey = "lastGoalCelebratedDate"
+
+    /// Returns true if the goal was just reached and hasn't been celebrated today yet.
+    func shouldCelebrate(for entries: [HydrationEntry]) -> Bool {
+        let totalOz = calculateTotalOz(for: entries)
+        guard totalOz >= goalOunces else { return false }
+
+        let today = Calendar.current.startOfDay(for: Date())
+        let lastCelebrated = UserDefaults.standard.object(forKey: Self.lastCelebratedDateKey) as? Date
+        return lastCelebrated != today
+    }
+
+    func markCelebrated() {
+        let today = Calendar.current.startOfDay(for: Date())
+        UserDefaults.standard.set(today, forKey: Self.lastCelebratedDateKey)
+    }
+
     init(context: NSManagedObjectContext) {
         self.viewContext = context
         loadPreferences()

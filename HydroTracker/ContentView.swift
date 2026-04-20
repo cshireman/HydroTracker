@@ -10,28 +10,23 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @State private var showingSettings = false
-    @State private var showingCustomAmount = false
 
     var body: some View {
-        NavigationStack {
-            HomeView()
-                .navigationTitle("Today")
-                .toolbar {
-                    ToolbarItemGroup(placement: .topBarTrailing) {
-                        Button {
-                            showingSettings = true
-                        } label: {
-                            Image(systemName: "gear")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 25, height: 25)
-                        }
-                    }
+        TabView {
+            Tab("Today", systemImage: "drop.fill") {
+                NavigationStack {
+                    HomeView()
+                        .navigationTitle("Today")
                 }
-                .sheet(isPresented: $showingSettings) {
-                    SettingsView(viewContext: viewContext)
-                }
+            }
+
+            Tab("History", systemImage: "chart.bar.fill") {
+                HistoryView()
+            }
+
+            Tab("Settings", systemImage: "gear") {
+                SettingsView(viewContext: viewContext)
+            }
         }
     }
 }

@@ -16,6 +16,7 @@ struct WatchMainView: View {
     @State private var viewModel: WatchViewModel?
     @State private var showingAddWater = false
     @State private var currentDay: Date = Calendar.current.startOfDay(for: Date())
+    @State private var showConfetti = false
 
     // MARK: - Fetch Request: Today's Entries
     @FetchRequest var todayEntries: FetchedResults<HydrationEntry>
@@ -64,6 +65,7 @@ struct WatchMainView: View {
     }
 
     var body: some View {
+        ZStack {
         VStack(spacing: 16) {
             // Progress Ring
             ZStack {
@@ -139,6 +141,22 @@ struct WatchMainView: View {
         .sheet(isPresented: $showingAddWater) {
             if let vm = viewModel {
                 WatchPresetSelectionView(viewModel: vm)
+            }
+        }
+        .onChange(of: todayEntries.count) { _, _ in
+            checkGoalCelebration()
+        }
+
+            WatchConfettiView(trigger: $showConfetti)
+        } // ZStack
+    }
+
+    private func checkGoalCelebration() {
+        guard let vm = viewModel else { return }
+        if vm.shouldCelebrate(for: Array(todayEntries)) {
+            vm.markCelebrated()
+            withAnimation {
+                showConfetti = true
             }
         }
     }
