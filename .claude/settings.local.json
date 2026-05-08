@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(xcodebuild:*)"
+      "Bash(xcodebuild:*)",
+      "Bash(wait)",
+      "Bash(xcrun simctl *)"
     ],
     "deny": [],
     "ask": []

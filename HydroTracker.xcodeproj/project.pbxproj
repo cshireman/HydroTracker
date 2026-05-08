@@ -68,6 +68,7 @@
 			membershipExceptions = (
 				Assets.xcassets,
 				HydroTrackerApp.swift,
+				PrivacyInfo.xcprivacy,
 				WatchConfettiView.swift,
 				WatchCustomAmountView.swift,
 				WatchCustomAmountViewModel.swift,

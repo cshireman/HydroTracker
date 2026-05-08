@@ -71,3 +71,5 @@ DerivedData/
 Pods/
 .build/
 .claude/
+
+deployment-plan.md
