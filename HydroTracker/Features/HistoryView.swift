@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import Charts
 
 struct HistoryView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -96,13 +97,33 @@ struct HistoryView: View {
                     .font(.headline)
                     .padding(.horizontal, 24)
 
-                BarChart(
-                    data: totals,
-                    xValue: selectedRange == .week ? \.label : \.dayNumber,
-                    yValue: \.totalOz,
-                    title: nil,
-                    labelInterval: selectedRange == .week ? 7 : 7
-                )
+                if selectedRange == .month {
+                    let tickDays = Array(stride(from: 1, through: max(totals.count, 1), by: 7))
+                    Chart(totals) { total in
+                        BarMark(
+                            x: .value("Day", total.dayInt),
+                            y: .value("Oz", total.totalOz)
+                        )
+                        .foregroundStyle(Color.blue.gradient)
+                        .cornerRadius(4)
+                    }
+                    .frame(height: 250)
+                    .padding(.horizontal)
+                    .chartXAxis {
+                        AxisMarks(values: tickDays) { _ in
+                            AxisGridLine()
+                            AxisTick()
+                            AxisValueLabel()
+                        }
+                    }
+                } else {
+                    BarChart(
+                        data: totals,
+                        xValue: \.label,
+                        yValue: \.totalOz,
+                        title: nil
+                    )
+                }
             }
         }
     }

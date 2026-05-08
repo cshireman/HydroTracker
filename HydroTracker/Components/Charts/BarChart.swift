@@ -31,6 +31,7 @@ public struct BarChart<DataPoint: Identifiable, X: Plottable, Y: Plottable>: Vie
     private let barColor: Color
     private let orientation: ChartOrientation
     private let labelInterval: Int?
+    private let visibleLabels: [X]?
 
     /// Creates a bar chart
     /// - Parameters:
@@ -41,6 +42,7 @@ public struct BarChart<DataPoint: Identifiable, X: Plottable, Y: Plottable>: Vie
     ///   - barColor: Color of the bars
     ///   - orientation: Vertical or horizontal orientation
     ///   - labelInterval: If provided, only show a label every N items to prevent overlap
+    ///   - visibleLabels: If provided, only these specific x-axis values will show a label
     public init(
         data: [DataPoint],
         xValue: KeyPath<DataPoint, X>,
@@ -48,7 +50,8 @@ public struct BarChart<DataPoint: Identifiable, X: Plottable, Y: Plottable>: Vie
         title: String? = nil,
         barColor: Color = .blue,
         orientation: ChartOrientation = .vertical,
-        labelInterval: Int? = nil
+        labelInterval: Int? = nil,
+        visibleLabels: [X]? = nil
     ) {
         self.data = data
         self.xValue = xValue
@@ -57,6 +60,7 @@ public struct BarChart<DataPoint: Identifiable, X: Plottable, Y: Plottable>: Vie
         self.barColor = barColor
         self.orientation = orientation
         self.labelInterval = labelInterval
+        self.visibleLabels = visibleLabels
     }
 
     public var body: some View {
@@ -80,7 +84,9 @@ public struct BarChart<DataPoint: Identifiable, X: Plottable, Y: Plottable>: Vie
             .frame(height: 250)
             .padding(.horizontal)
             .chartXAxis {
-                if let interval = labelInterval, interval > 0 {
+                if let visibleLabels = visibleLabels {
+                    AxisMarks(values: visibleLabels)
+                } else if let interval = labelInterval, interval > 0 {
                     AxisMarks(values: .automatic(desiredCount: interval))
                 } else {
                     AxisMarks(values: .automatic)

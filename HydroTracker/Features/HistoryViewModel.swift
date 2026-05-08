@@ -114,4 +114,8 @@ struct DailyTotal: Identifiable {
         formatter.dateFormat = "d"
         return formatter.string(from: date)
     }
+
+    var dayInt: Int {
+        Calendar.current.component(.day, from: date)
+    }
 }
