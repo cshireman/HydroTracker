@@ -15,30 +15,40 @@ struct HistoryView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 20) {
-                    // Range picker
-                    Picker("Time Range", selection: $selectedRange) {
-                        ForEach(HistoryRange.allCases, id: \.self) { range in
-                            Text(range.rawValue).tag(range)
+            Group {
+                if let vm = viewModel {
+                    if vm.dailyTotals.isEmpty {
+                        ContentUnavailableView(
+                            "No Data",
+                            systemImage: "chart.bar",
+                            description: Text("Start logging water to see your history.")
+                        )
+                    } else {
+                        ScrollView {
+                            VStack(spacing: 20) {
+                                // Range picker
+                                Picker("Time Range", selection: $selectedRange) {
+                                    ForEach(HistoryRange.allCases, id: \.self) { range in
+                                        Text(range.rawValue).tag(range)
+                                    }
+                                }
+                                .pickerStyle(.segmented)
+                                .padding(.horizontal, 24)
+
+                                // Summary stats
+                                summarySection(vm: vm)
+
+                                // Bar chart
+                                chartSection(vm: vm)
+                            }
+                            .padding(.top, 16)
                         }
                     }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal, 24)
-
-                    // Summary stats
-                    if let vm = viewModel {
-                        summarySection(vm: vm)
-                    }
-
-                    // Bar chart
-                    if let vm = viewModel {
-                        chartSection(vm: vm)
-                    }
+                } else {
+                    ProgressView()
+                        .padding(.top, 40)
                 }
-                .padding(.top, 16)
             }
-            .navigationTitle("History")
             .onAppear {
                 if viewModel == nil {
                     viewModel = HistoryViewModel(context: viewContext)
@@ -49,6 +59,7 @@ struct HistoryView: View {
                 viewModel?.loadData(for: newRange)
             }
         }
+        .navigationTitle("History")
     }
 
     // MARK: - Summary Section

@@ -69,6 +69,7 @@ public struct BarChart<DataPoint: Identifiable, X: Plottable, Y: Plottable>: Vie
 
             Chart(data.indices, id: \.self) { index in
                 let item = data[index]
+
                 BarMark(
                     x: .value("X", item[keyPath: xValue]),
                     y: .value("Y", item[keyPath: yValue])
@@ -80,11 +81,7 @@ public struct BarChart<DataPoint: Identifiable, X: Plottable, Y: Plottable>: Vie
             .padding(.horizontal)
             .chartXAxis {
                 if let interval = labelInterval, interval > 0 {
-                    AxisMarks(values: data.indices.filter { $0 % interval == 0 }) { value in
-                        AxisGridLine()
-                        AxisTick()
-                        AxisValueLabel()
-                    }
+                    AxisMarks(values: .automatic(desiredCount: interval))
                 } else {
                     AxisMarks(values: .automatic)
                 }
@@ -109,12 +106,37 @@ public enum ChartOrientation {
     }
 
     let data = [
-        DataPoint(category: "Jan", value: 45),
-        DataPoint(category: "Feb", value: 62),
-        DataPoint(category: "Mar", value: 58),
-        DataPoint(category: "Apr", value: 71),
-        DataPoint(category: "May", value: 68),
-        DataPoint(category: "Jun", value: 85)
+        DataPoint(category: "1", value: 45),
+        DataPoint(category: "2", value: 62),
+        DataPoint(category: "3", value: 58),
+        DataPoint(category: "4", value: 71),
+        DataPoint(category: "5", value: 68),
+        DataPoint(category: "6", value: 68),
+        DataPoint(category: "7", value: 68),
+        DataPoint(category: "8", value: 68),
+        DataPoint(category: "9", value: 68),
+        DataPoint(category: "10", value: 68),
+        DataPoint(category: "11", value: 68),
+        DataPoint(category: "12", value: 68),
+        DataPoint(category: "13", value: 68),
+        DataPoint(category: "14", value: 68),
+        DataPoint(category: "15", value: 68),
+        DataPoint(category: "16", value: 68),
+        DataPoint(category: "17", value: 68),
+        DataPoint(category: "18", value: 68),
+        DataPoint(category: "19", value: 68),
+        DataPoint(category: "20", value: 68),
+        DataPoint(category: "21", value: 68),
+        DataPoint(category: "22", value: 68),
+        DataPoint(category: "23", value: 68),
+        DataPoint(category: "24", value: 68),
+        DataPoint(category: "25", value: 68),
+        DataPoint(category: "26", value: 68),
+        DataPoint(category: "27", value: 68),
+        DataPoint(category: "28", value: 68),
+        DataPoint(category: "29", value: 68),
+        DataPoint(category: "30", value: 68),
+        DataPoint(category: "31", value: 68)
     ]
 
     return ScrollView {
@@ -124,24 +146,25 @@ public enum ChartOrientation {
                     data: data,
                     xValue: \.category,
                     yValue: \.value,
-                    title: "Monthly Sales"
+                    title: "Monthly Sales",
+                    labelInterval: 7
                 )
 
-                BarChart(
-                    data: data,
-                    xValue: \.category,
-                    yValue: \.value,
-                    title: "Revenue Growth",
-                    barColor: .green
-                )
-
-                BarChart(
-                    data: data,
-                    xValue: \.category,
-                    yValue: \.value,
-                    title: "User Engagement",
-                    barColor: .purple
-                )
+//                BarChart(
+//                    data: data,
+//                    xValue: \.category,
+//                    yValue: \.value,
+//                    title: "Revenue Growth",
+//                    barColor: .green
+//                )
+//
+//                BarChart(
+//                    data: data,
+//                    xValue: \.category,
+//                    yValue: \.value,
+//                    title: "User Engagement",
+//                    barColor: .purple
+//                )
             } else {
                 Text("Charts require iOS 16+")
             }
